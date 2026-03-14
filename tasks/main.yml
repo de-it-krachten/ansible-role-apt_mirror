@@ -1,0 +1,35 @@
+---
+
+- name: Install packages
+  ansible.builtin.apt:
+    name: "{{ apt_mirror_packages }}"
+
+- name: Create mirror location
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+  loop:
+    - "{{ apt_mirror_path }}"
+    - "{{ apt_mirror_path }}/var"
+
+- name: Copy postmirror.sh script
+  ansible.builtin.template:
+    src: postmirror.sh.j2
+    dest: "{{ apt_mirror_path }}/var/postmirror.sh"
+    mode: "0750"
+    backup: yes
+
+- name: Copy mirror.list from template
+  ansible.builtin.template:
+    src: mirror.list.j2
+    dest: /etc/apt/mirror.list
+    mode: "0644"
+    backup: yes
+
+- name: Activate cron job
+  ansible.builtin.template:
+    src: cron-apt-mirror.j2
+    dest: /etc/cron.d/apt-mirror
+    mode: "0644"
+  when: apt_mirror_schedule | bool

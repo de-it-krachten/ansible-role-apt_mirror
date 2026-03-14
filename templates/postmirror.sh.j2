@@ -1,0 +1,12 @@
+#!/bin/bash
+
+cd {{ apt_mirror_path }}/mirror
+
+{% for release in apt_mirror_releases %}
+for p in "${1:-{{ release }}}"{,-{security,updates}}/{main,restricted,universe,multiverse};do
+  echo "${p}"
+  wget -q -c -r -np -R "index.html*" "http://archive.ubuntu.com/ubuntu/dists/${p}/cnf/Commands-amd64.xz"
+  wget -q -c -r -np -R "index.html*" "http://archive.ubuntu.com/ubuntu/dists/${p}/cnf/Commands-i386.xz"
+done
+
+{% endfor %}
