@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/de-it-krachten/ansible-role-apt_mirror/compare/v1.0.0...v1.1.0) (2026-07-23)
+
+
+### Features
+
+* Added support for Ubuntu 26.04 LTS ([4c0cba7](https://github.com/de-it-krachten/ansible-role-apt_mirror/commit/4c0cba7fe7afb8f808f2a93400de2c6e798d55b6))
+
 # 1.0.0 (2026-03-14)
 
 
