@@ -25,7 +25,7 @@
   ansible.builtin.template:
     src: mirror.list.j2
     # dest: /etc/apt/mirror.list
-    dest: /tmp/apt/mirror.list
+    dest: /tmp/mirror.list
     mode: "0644"
     backup: yes
 

@@ -13,7 +13,7 @@ apt_mirror_releases:
   - noble
 
 # Ubuntu releases supported
-apt_mirror_releases:
+apt_mirror_releases_supported:
   - focal
   - jammy
   - noble
