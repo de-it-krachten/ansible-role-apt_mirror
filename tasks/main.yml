@@ -33,3 +33,13 @@
     dest: /etc/cron.d/apt-mirror
     mode: "0644"
   when: apt_mirror_schedule | bool
+
+#- name: Cleanup
+#  ansible.builtin.file:
+#    path: "{{ item }}"
+#    state: absent
+#  loop:
+#    - "{{ apt_mirror_path }}/skel/archive.ubuntu.com/ubuntu/dists/focal"
+#    - "{{ apt_mirror_path }}/skel/archive.ubuntu.com/ubuntu/dists/focal-updates"
+#    - "{{ apt_mirror_path }}/skel/archive.ubuntu.com/ubuntu/dists/focal-updates"
+

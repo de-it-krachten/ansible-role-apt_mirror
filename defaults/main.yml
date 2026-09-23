@@ -11,7 +11,8 @@ apt_mirror_packages:
 apt_mirror_releases:
   # - focal
   - jammy
-  # - noble
+  - noble
+  # - resolute
 
 # Schedule mirror job
 apt_mirror_schedule: false

@@ -1,12 +1,35 @@
 #!/bin/bash
 
-cd {{ apt_mirror_path }}/mirror
+# 20.04 LTS	Focal Fossa
+# 22.04 LTS	Jammy Jellyfish
+# 24.04 LTS	Noble Numbat
+# 26.04 LTS	Resolute Raccoon
+
+APT_MIRROR_ROOT={{ apt_mirror_root }}
+APT_MIRROR_USER={{ apt_mirror_user }}
+APT_MIRROR_CMD=/usr/bin/apt-mirror
+APT_MIRROR_LOG=/var/spool/apt-mirror/var/cron.log
+
+if [[ `id -un` != root ]]
+then
+  echo "Execute as 'root'" >&2
+  exit 1
+fi
+
+su - $APT_MIRROR_USER -c "$APT_MIRROR_CMD 2>&1 | tee -a $APT_MIRROR_LOG"
+su - $APT_MIRROR_USER -c "sh ${APT_MIRROR_ROOT}/var/postmirror.sh"
+su - $APT_MIRROR_USER -c "sh ${APT_MIRROR_ROOT}/var/clean.sh"
+
+cd ${APT_MIRROR_ROOT}/mirror
 
 {% for release in apt_mirror_releases %}
 for p in "${1:-{{ release }}}"{,-{security,updates}}/{main,restricted,universe,multiverse};do
   echo "${p}"
   wget -q -c -r -np -R "index.html*" "http://archive.ubuntu.com/ubuntu/dists/${p}/cnf/Commands-amd64.xz"
   wget -q -c -r -np -R "index.html*" "http://archive.ubuntu.com/ubuntu/dists/${p}/cnf/Commands-i386.xz"
+
 done
 
 {% endfor %}
+
+chown -R ${APT_MIRROR_USER} ${APT_MIRROR_ROOT}
