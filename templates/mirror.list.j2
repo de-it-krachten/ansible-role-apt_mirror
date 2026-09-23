@@ -1,6 +1,6 @@
 ############# config ##################
 #
-set base_path     {{ apt_mirror_path }}
+set base_path     {{ apt_mirror_root }}
 #
 # set mirror_path  $base_path/mirror
 # set skel_path    $base_path/skel
@@ -24,8 +24,8 @@ deb http://archive.ubuntu.com/ubuntu {{ release }}-updates main restricted unive
 #deb-src http://archive.ubuntu.com/ubuntu {{ release }} main restricted universe multiverse
 #deb-src http://archive.ubuntu.com/ubuntu {{ release }}-security main restricted universe multiverse
 #deb-src http://archive.ubuntu.com/ubuntu {{ release }}-updates main restricted universe multiverse
-##deb-src http://archive.ubuntu.com/ubuntu {{ release }}-proposed main restricted universe multiverse
-##deb-src http://archive.ubuntu.com/ubuntu {{ release }}-backports main restricted universe multiverse
+#deb-src http://archive.ubuntu.com/ubuntu {{ release }}-proposed main restricted universe multiverse
+#deb-src http://archive.ubuntu.com/ubuntu {{ release }}-backports main restricted universe multiverse
 
 {% endfor %}
 

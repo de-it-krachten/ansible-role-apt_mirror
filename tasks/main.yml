@@ -10,13 +10,13 @@
     state: directory
     mode: "0755"
   loop:
-    - "{{ apt_mirror_path }}"
-    - "{{ apt_mirror_path }}/var"
+    - "{{ apt_mirror_root }}"
+    - "{{ apt_mirror_root }}/var"
 
 - name: Copy postmirror.sh script
   ansible.builtin.template:
     src: postmirror.sh.j2
-    dest: "{{ apt_mirror_path }}/var/postmirror.sh"
+    dest: "{{ apt_mirror_root }}/var/postmirror.sh"
     mode: "0750"
     backup: yes
 
@@ -39,7 +39,7 @@
 #    path: "{{ item }}"
 #    state: absent
 #  loop:
-#    - "{{ apt_mirror_path }}/skel/archive.ubuntu.com/ubuntu/dists/focal"
-#    - "{{ apt_mirror_path }}/skel/archive.ubuntu.com/ubuntu/dists/focal-updates"
-#    - "{{ apt_mirror_path }}/skel/archive.ubuntu.com/ubuntu/dists/focal-updates"
+#    - "{{ apt_mirror_root }}/skel/archive.ubuntu.com/ubuntu/dists/focal"
+#    - "{{ apt_mirror_root }}/skel/archive.ubuntu.com/ubuntu/dists/focal-updates"
+#    - "{{ apt_mirror_root }}/skel/archive.ubuntu.com/ubuntu/dists/focal-updates"
 

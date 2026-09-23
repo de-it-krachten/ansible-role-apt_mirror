@@ -1,7 +1,7 @@
 ---
 
 # Location where you want to store the mirrored files
-apt_mirror_path: /data/install/ubuntu
+apt_mirror_root: /data/install/ubuntu
 
 # APT packages to install
 apt_mirror_packages:
@@ -9,10 +9,15 @@ apt_mirror_packages:
 
 # Ubuntu releases to mirror
 apt_mirror_releases:
-  # - focal
   - jammy
   - noble
-  # - resolute
+
+# Ubuntu releases supported
+apt_mirror_releases:
+  - focal
+  - jammy
+  - noble
+  - resolute
 
 # Schedule mirror job
 apt_mirror_schedule: false
