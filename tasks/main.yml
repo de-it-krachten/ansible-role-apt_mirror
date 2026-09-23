@@ -16,14 +16,16 @@
 - name: Copy postmirror.sh script
   ansible.builtin.template:
     src: postmirror.sh.j2
-    dest: "{{ apt_mirror_root }}/var/postmirror.sh"
+    # dest: "{{ apt_mirror_root }}/var/postmirror.sh"
+    dest: "/tmp/postmirror.sh"
     mode: "0750"
     backup: yes
 
 - name: Copy mirror.list from template
   ansible.builtin.template:
     src: mirror.list.j2
-    dest: /etc/apt/mirror.list
+    # dest: /etc/apt/mirror.list
+    dest: /tmp/apt/mirror.list
     mode: "0644"
     backup: yes
 
